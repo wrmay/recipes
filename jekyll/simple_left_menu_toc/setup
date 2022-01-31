@@ -1,0 +1,5 @@
+export SDKROOT=`xcrun --show-sdk-path`
+echo SDKROOT set to $SDKROOT
+
+export PATH=~/.gem/ruby/2.6.0/bin:$PATH
+echo PATH set to $PATH

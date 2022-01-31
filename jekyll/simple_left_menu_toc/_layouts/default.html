@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+
+<body>
+    <div class="section">
+        <div class="block">
+            <h1 class="title">
+                <a href="/index.html">My Cool Site</a>
+            </h1>
+        </div>
+        <div class="block">
+            <div class="columns">
+                <div class="column is-one-fifth">
+                    <aside class="menu">
+                        <p class="menu-label">Table of Contents</p>
+                        <ul class="menu-list">
+                            {% for lab in site.labs %}
+                            <li><a {% if page.url == lab.url %}class="is-active"{% endif %} href={{ lab.url }}>{{ lab.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </aside>
+                </div>
+                <div class="column">
+                    {{ content }}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
