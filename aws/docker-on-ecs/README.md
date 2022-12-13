@@ -1,13 +1,13 @@
 # Overview
 
-Instructions for using docker compose do deploy to AWS.
+Instructions for using docker compose to deploy to AWS ECS.
 
 # Setup
 
 First, your AWS CLI must be installed and configured. See https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html for details.  The configured user must have sufficient privileges.  A detailed list of required permissions is here: https://docs.docker.com/cloud/ecs-integration/#run-an-application-on-ecs .
 
-If you have multiple aws profiles configured use the `AWS_PROFILE` environment variable
-to point to the correct one before proceeding.  See https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html for information on profiles.
+__If you have multiple aws profiles configured use the `AWS_PROFILE` environment variable
+to point to the correct one before proceeding.__  See https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html for information on profiles.
 
 If you don't already have a docker context for Amazon ECS, create an ECS context:
 
