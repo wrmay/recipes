@@ -38,8 +38,8 @@ will leave the VPC and subnets untouched.
 # Deploy Images
 
 In the AWS Console, go to the ECR service and create a new private repository for 
-each image you wish to deploy.  To upload your locally built images, the repository 
-in the AWS ECR console and click the "View push commands" button for uploading 
+each image you wish to deploy.  To upload your locally built images, navigate to the 
+repository in the AWS ECR console and click the "View push commands" button for uploading 
 instructions.
 
 Edit `compose.yaml` to refer to the images you have just pushed.
