@@ -1,0 +1,77 @@
+---
+  AWSTemplateFormatVersion: 2010-09-09
+  Description: "My VPC"
+  Resources:
+    VPC:
+      Type: AWS::EC2::VPC
+      Properties:
+        CidrBlock: 10.0.0.0/16
+        EnableDnsSupport: true
+        EnableDnsHostnames: true
+        InstanceTenancy: default
+        Tags:
+          - Key: Name
+            Value: RMVPC
+            
+    InternetGateway:
+      Type: AWS::EC2::InternetGateway
+            
+    GatewayAttachment:
+      Type: AWS::EC2::VPCGatewayAttachment
+      Properties:
+        VpcId: !Ref VPC
+        InternetGatewayId: !Ref InternetGateway
+            
+    PublicSubnetA:
+      Type: AWS::EC2::Subnet
+      Properties:
+        CidrBlock: 10.0.1.0/24
+        AvailabilityZone: us-east-2a
+        VpcId: !Ref VPC
+
+    PublicSubnetB:
+      Type: AWS::EC2::Subnet
+      Properties:
+        CidrBlock: 10.0.2.0/24
+        AvailabilityZone: us-east-2b
+        VpcId: !Ref VPC
+
+    PublicSubnetC:
+      Type: AWS::EC2::Subnet
+      Properties:
+        CidrBlock: 10.0.3.0/24
+        AvailabilityZone: us-east-2c
+        VpcId: !Ref VPC
+
+    MainRouteTable:
+      Type: AWS::EC2::RouteTable
+      Properties:
+        VpcId: !Ref VPC
+            
+    NonLocalRoute:
+      Type: AWS::EC2::Route
+      Properties:
+        DestinationCidrBlock: 0.0.0.0/0
+        RouteTableId: !Ref MainRouteTable
+        GatewayId: !Ref InternetGateway
+      DependsOn: InternetGateway
+            
+    PublicSubnetRouteTableAssociationA:
+      Type: AWS::EC2::SubnetRouteTableAssociation
+      Properties:
+        RouteTableId: !Ref MainRouteTable
+        SubnetId: !Ref PublicSubnetA
+            
+    PublicSubnetRouteTableAssociationB:
+      Type: AWS::EC2::SubnetRouteTableAssociation
+      Properties:
+        RouteTableId: !Ref MainRouteTable
+        SubnetId: !Ref PublicSubnetB
+
+    PublicSubnetRouteTableAssociationC:
+      Type: AWS::EC2::SubnetRouteTableAssociation
+      Properties:
+        RouteTableId: !Ref MainRouteTable
+        SubnetId: !Ref PublicSubnetC
+
+

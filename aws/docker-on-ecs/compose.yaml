@@ -1,0 +1,8 @@
+x-aws-vpc: vpc-0fbbe5e6b07561ca9
+services:
+  enrichment-service:
+    image: 123456789.dkr.ecr.us-east-2.amazonaws.com/my-service:latest
+    ports:
+      - "50051:50051"
+    command: java -cp ./my-service.jar com.sample.MyService 
+
