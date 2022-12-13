@@ -19,14 +19,18 @@ Note that "myecscontext" is just a name and can be anything you desire.
 
 # Set up a VPC
 
-By default, docker compose will deploy into the default VPC.  If this is not 
-the desired result, you will need to create a VPC with at least 2 public subnets.  
+By default, docker compose will deploy into the default VPC.  If you wish to use the 
+default VPC (and it has at least 2 public networks), just remove the `x-aws-vpc` entry 
+from the top of `compose.yam'`.
+
+Otherwise, you will need to create a VPC with at least 2 public subnets.  
 The file, `vpc.yaml` is  CloudFormation template that describes a VPC with 3 public 
 subnets.  You can edit this file, changing the name, availability zones, etc. as 
 desired.  Once done, use the CloudFormation console to deploy the VPC and subnets.
 
 After the VPC has been deployed, copy its identifier (looks like `vpc-0fbbc9e6c07654ca9`)
-to the `x-aws-vpc` entry specify your VPC.
+to the `x-aws-vpc` entry in `compose.yaml`.  The project will be deployed into the VPC
+specified by this entry.  
 
 Note that you can keep the VPC and use it for other deployments.  `docker compose down`
 will leave the VPC and subnets untouched.
